@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { assets } from '../../../frontend/src/assets/assets';
 
 const Navbar = ({ setToken, setIsAdmin }) => {
   const handleLogout = () => {
@@ -16,7 +17,7 @@ const Navbar = ({ setToken, setIsAdmin }) => {
           <div className='flex'>
             <div className='flex-shrink-0 flex items-center'>
               <Link to='/' className='text-xl font-bold text-gray-800'>
-                Admin Panel
+                <img className='w-[max(10%,80px)]' src={assets.logo} alt="" />
               </Link>
             </div>
           </div>

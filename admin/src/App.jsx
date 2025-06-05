@@ -13,33 +13,31 @@ export const currency = '$';
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem('token') || '');
-  const [isAdmin, setIsAdmin] = useState(localStorage.getItem('isAdmin') === 'true');
 
   useEffect(() => {
     localStorage.setItem('token', token);
-    localStorage.setItem('isAdmin', isAdmin);
-  }, [token, isAdmin]);
+  }, [token]);
 
   return (
     <div className="bg-gray-50 min-h-screen">
       <ToastContainer />
       
       {token === '' ? (
-        <Login setToken={setToken} setIsAdmin={setIsAdmin} />
+        <Login setToken={setToken}/>
       ) : (
         <>
-          <Navbar setToken={setToken} setIsAdmin={setIsAdmin} />
+          <Navbar setToken={setToken}/>
 
-          <div className="flex">
+          <div className="flex w-full">
             {/* Sidebar */}
             <Sidebar />
 
             {/* Main content */}
-            <div className="flex-1 px-6 py-4 text-gray-600 text-base">
+            <div className="w-[70%] mx-auto ml-[max(5vw,25px)] my-8 text-gray-600 text-base">
               <Routes>
-                <Route path="/add" element={<Add token={token} isAdmin={isAdmin} />} />
-                <Route path="/list" element={<List token={token} isAdmin={isAdmin} />} />
-                <Route path="/orders" element={<Orders token={token} isAdmin={isAdmin} />} />
+                <Route path="/add" element={<Add token={token}/>} />
+                <Route path="/list" element={<List token={token} />} />
+                <Route path="/orders" element={<Orders token={token}/>} />
               </Routes>
             </div>
           </div>

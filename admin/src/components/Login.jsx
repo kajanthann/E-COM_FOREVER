@@ -3,28 +3,24 @@ import axios from 'axios';
 import { backendUrl } from '../App';
 import { toast } from 'react-toastify';
 
-const Login = ({ setToken, setIsAdmin }) => {
+const Login = ({ setToken }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
+    
 
     try {
-      const response = await axios.post(`${backendUrl}/api/user/login`, { email, password });
+      e.preventDefault();
+      setLoading(true);
+      const response = await axios.post(backendUrl + '/api/user/admin', { email, password });
+      
 
       if (response.data.success) {
-        if (!response.data.isAdmin) {
-          toast.error('Access denied. Admin privileges required.');
-          setLoading(false);
-          return;
-        }
+        
         setToken(response.data.token);
-        setIsAdmin(response.data.isAdmin);
         localStorage.setItem('token', response.data.token);
-        localStorage.setItem('isAdmin', response.data.isAdmin);
         toast.success('Login successful!');
       } else {
         toast.error(response.data.message || 'Login failed');
@@ -32,8 +28,6 @@ const Login = ({ setToken, setIsAdmin }) => {
     } catch (error) {
       console.error('Login error:', error);
       toast.error(error.response?.data?.message || 'An error occurred during login');
-    } finally {
-      setLoading(false);
     }
   };
 
