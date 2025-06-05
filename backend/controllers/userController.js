@@ -3,12 +3,14 @@ import validator from 'validator'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
-const createToken = (user) => {
+const createToken = (id) => {
     return jwt.sign(
-        {id},
+        { id },
         process.env.JWT_SECRET,
+        { expiresIn: "2d" }
     );
 };
+
 
 // User login
 const loginUser = async (req, res) => {

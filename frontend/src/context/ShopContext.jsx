@@ -16,7 +16,6 @@ const ShopContextProvider = (props) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [token, setToken] = useState("");
-  const [isAdmin, setIsAdmin] = useState(false);
 
   const navigate = useNavigate();
 
@@ -258,8 +257,6 @@ const ShopContextProvider = (props) => {
     token,
     setToken,
     setCartItems,
-    isAdmin,
-    setIsAdmin,
     clearUserData,
     getAuthHeaders,
     handleAuthError,

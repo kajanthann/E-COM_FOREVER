@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 
 const Login = () => {
   const [currentState, setCurrentState] = useState('Login');
-  const { token, setToken, setIsAdmin, navigate, backendUrl } = useContext(ShopContext);
+  const { token, setToken, navigate, backendUrl } = useContext(ShopContext);
 
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
@@ -50,7 +50,6 @@ const Login = () => {
         
         if (response.data.success) {
           setToken(response.data.token);
-          setIsAdmin(response.data.isAdmin);
           localStorage.setItem('token', response.data.token);
           toast.success('Registration successful!');
           navigate('/');
@@ -65,15 +64,8 @@ const Login = () => {
         
         if (response.data.success) {
           setToken(response.data.token);
-          setIsAdmin(response.data.isAdmin);
           localStorage.setItem('token', response.data.token);
           toast.success('Login successful!');
-          
-          if (response.data.isAdmin) {
-            navigate('/admin/orders');
-          } else {
-            navigate('/');
-          }
         } else {
           toast.error(response.data.message);
         }
