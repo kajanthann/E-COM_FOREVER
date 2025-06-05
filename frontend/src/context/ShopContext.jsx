@@ -8,7 +8,7 @@ export const ShopContext = createContext();
 const ShopContextProvider = (props) => {
   const currency = "$";
   const delivery_fee = 10;
-  const backendUrl = import.meta.env.VITE_BACKEND_URL || '';  // Empty string since we're using Vite proxy
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;  // Empty string since we're using Vite proxy
 
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);

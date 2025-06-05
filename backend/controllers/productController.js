@@ -4,11 +4,12 @@ import productModel from '../models/productModel.js';
 // function for add product
 const addProduct = async (req,res)=> {
     try {
-        const { name,
+        const { 
+            name,
             description,
             price,
             category,
-            subcategory,
+            subCategory,
             size,
             bestseller,
             quantity } = req.body;
@@ -44,9 +45,9 @@ const addProduct = async (req,res)=> {
                 description,
                 price:Number(price),
                 category,
-                subcategory,
+                subCategory,
                 size:JSON.parse(size),
-                bestseller: bestseller === 'true',
+                bestseller: bestseller === 'true' ? true : false,   
                 quantity: Number(quantity),
                 image:imagesUrl,
                 date:Date.now()
